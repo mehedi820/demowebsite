@@ -1,0 +1,41 @@
+body{
+    margin: 0px; background-color: rgb(23, 23, 23);
+}
+.head{
+    z-index: 9999;;width: 100%; height: 70px; background-color: black; color: aliceblue; align-content: center; text-align: center;
+
+    display: flex; align-items: center; position: fixed; top: 0;
+}
+.h{
+    padding-left: 60px; position: absolute; color: aqua;
+}
+nav{
+    display: flex; position: absolute; right: 0; padding-right: 70px;
+}
+.nav {
+     padding-left: 0px; padding-right: 4%; 
+}
+.nav a{
+    text-decoration: none; color: aliceblue;
+}
+.bod{
+     max-width: 800px; padding: 70px 10px; color: aliceblue; position: sticky;  background-image: url(file/cover.jpg); background-size: cover; margin: 70px auto; display: grid; width: 100%;
+}
+.logo{
+    position: absolute; margin: 10px 40%;
+}
+.logo img{
+    border: solid; border-radius: 50%; position: absolute; 
+}
+.salam{
+    color: rgb(2, 137, 137); text-align: center; padding-top: 190px;
+}
+.body{
+     max-width: 800px; padding: 0px 10px; color: aliceblue; margin: 0 auto; display: block; position: relative; 
+}
+.log{
+    padding-left: 5px;
+}
+.log img{
+    width: 40px; border-style: solid; border-radius: 50%; 
+}
