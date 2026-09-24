@@ -19,7 +19,7 @@ nav{
     text-decoration: none; color: aliceblue;
 }
 .bod{
-     max-width: 800px; padding: 70px 10px; color: aliceblue; position: sticky;  background-image: url(file/cover.jpg); background-size: cover; margin: 70px auto; display: grid; width: 100%;
+     max-width: 800px; padding: 70px 10px; color: aliceblue; position: sticky;  background-image: url(cover.jpg); background-size: cover; margin: 70px auto; display: grid; width: 100%;
 }
 .logo{
     position: absolute; margin: 10px 40%;
