@@ -22,16 +22,16 @@ nav{
     color: aqua;
 }
 .bod{
-    background-image: url(cover.jpg); margin-top: 70px; background-size: cover; max-width: "800px";
+    background-image: url(cover.jpg); margin: 70px auto; background-size: cover; max-width: 800px; 
 }
 .logo{
-    position: absolute; margin: 10px 40%;
+    position: ; margin: 10px 40%;
 }
 .logo img{
-    border: solid; border-radius: 50%; position: absolute; 
+    border: solid; border-radius: 50%; 
 }
 .salam{
-    color: rgb(2, 137, 137); text-align: center; padding-top: 190px;
+    color: rgb(2, 137, 137); text-align: center; padding-bottom: 50px;
 }
 .body{
      max-width: 800px; padding: 0px 10px; color: aliceblue; margin: 0 auto; display: block; position: relative; 
