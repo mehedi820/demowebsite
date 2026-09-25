@@ -22,7 +22,7 @@ nav{
     color: aqua;
 }
 .bod{
-    background-image: url(cover.jpg); margin-top: 70px; background-size: cover;
+    background-image: url(cover.jpg); margin-top: 70px; background-size: cover; max-width: "800px";
 }
 .logo{
     position: absolute; margin: 10px 40%;
