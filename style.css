@@ -22,7 +22,7 @@ nav{
     color: aqua;
 }
 .bod{
-     max-width: 800px; padding: 70px 10px; color: aliceblue; position: sticky;  background-image: url(cover.jpg); background-size: cover; margin: 70px auto; display: grid; width: 100%;
+    background-image: url(cover.jpg); margin-top: 70px; background-size: cover;
 }
 .logo{
     position: absolute; margin: 10px 40%;
