@@ -25,7 +25,7 @@ nav{
     background-image: url(cover.jpg); margin: 70px auto; background-size: cover; max-width: 800px; 
 }
 .logo{
-    position: ; margin: 10px 40%;
+    position: ; margin: 10px 38%; padding-top: 5px;
 }
 .logo img{
     border: solid; border-radius: 50%; 
