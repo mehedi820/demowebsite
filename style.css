@@ -58,10 +58,10 @@ nav{
     color: aqua; padding-top: 100px; text-align: center;
 }
 #bd{
-    margin: 100px 15px; padding: 10px; border: solid #ddd; border-radius: 5px; font-family:Arial, Helvetica, sans-serif;
+    margin: 100px 15px; padding: 10px; border: solid #ddd; border-radius: 5px; font-family:Arial, Helvetica, sans-serif; max-width:500px;
 }
 .contract{
-    color: aqua; padding-bottom: 10px; max-width:500px;
+    color: aqua; padding-bottom: 10px; 
 }
 .from{
     width: 90%; padding-bottom: 5px;
