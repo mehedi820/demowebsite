@@ -72,3 +72,6 @@ nav{
 .btn{
     width: 90%; color: aqua; background-color: red; border-radius: 7px; padding: 5px;
 }
+#div{
+    max-width: 800px; background-color: #ddd; height: 150px;
+}
