@@ -43,3 +43,21 @@ nav{
 .pd{
     color: aqua; padding-top: 100px; text-align: center;
 }
+footer{
+    display: flex; margin: 100% auto; max-width: 800px; background-color: rgb(85, 84, 84); margin-bottom: 0px;
+}
+.footer{
+    color: aliceblue; list-style: none; 
+}
+.footer li{
+    padding: 5px 5px; dominant-baseline: central;
+}
+.foote{
+    list-style: none; color: aliceblue; 
+}
+.foote li{
+    padding: 3px; 
+}
+.foote img{
+    width: 30px; 
+}
