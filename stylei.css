@@ -1,77 +1,50 @@
-body{
-    margin: 0px; background-color: rgb(23, 23, 23);
-}
-.head{
-    z-index: 9999;;width: 100%; height: 70px; background-color: black; color: aliceblue; align-content: center; text-align: center;
-
-    display: flex; align-items: center; position: fixed; top: 0;
-}
-.h{
-    padding-left: 60px; position: absolute; color: aqua;
-}
-nav{
-    display: flex; position: absolute; right: 0; padding-right: 70px;
-}
-.nav {
-     padding-left: 10px; padding-right: 4%; 
-}
-.nav a{
-    text-decoration: none; color: aliceblue;
-}
-.nav :hover{
-    color: aqua;
-}
-.log{
-    padding-left: 5px;
-}
-.log img{
-    width: 40px; border-style: solid; border-radius: 50%; 
-}
-/*.p{
-    padding-top: ; position:;
-}
-.p div ul{
-    list-style: none; padding: 5px; display: none; position: absolute; margin-left: -20px; margin-top: 0;
-}
-.p :hover ul{
-    display: block; background-color: rgb(48, 48, 48); 
-}
-.p div ul li{
-    padding: 3px; width: auto;
-}*/
-.bod{
-    background-image: url(cover.jpg); margin: 70px auto; background-size: cover; max-width: 800px; 
-}
-.logo{
-    padding-top: 5px; margin: 0px 40%;
-}
-.logo img{
-     border-radius: 50%; background-color: black;
-}
-.salam{
-    color: rgb(2, 137, 137); text-align: center; padding-bottom: 50px;
-}
-#BODY{
-    max-width: 800px;
-}
-.body{
-     max-width: 800px; padding: 15px 0px; color: black; margin: -60px auto; display: block; position: relative; background-color:aliceblue; border-radius: 5px; 
-}
-footer{
-    display: flex; margin: 100% auto; max-width: 800px; background-color: rgb(85, 84, 84); margin-bottom: 0px;
-}
-.footer{
-    color: aliceblue; list-style: none; 
-}
-.footer li{
-    padding: 5px 5px; dominant-baseline: central;
-}
-.foote{
-    list-style: none; color: aliceblue; 
-}
-.foote li{
-    padding: 3px; 
-}
-.foote img{
-    width: 30px; 
-}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEHEDI_BD</title>
+    <link rel="stylesheet" href="stylei.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="head">
+            <div class="h">MEHEDI_BD</div>
+            <div class="log"><img src="logo.png"></div>
+            <nav>
+                <div class="nav"><a href="index.html">Home</a></div>
+                <div class="nav"><a href="project.html">Project</a></div>
+                <div class="nav"><a href="contract.html">Contract</a></div>
+            </nav>
+        </div>
+    </header>
+    <div class="bod">
+        
+        <div class="logo"><img src="mh.png" width="150px"></div>
+        <div class="salam">Assalamu Aliqum Owa Rahmatullahi Owabarakatuh</div>
+    </div id="BODY">
+    <div>
+            <div class="body">
+                .   Name: Mehedi Hasan<br>
+                .   Email: mehedihasanmh4439@gmail.com<br>
+                .   Phone: 01332762273<br>
+            </div>
+            <div></div>
+</body>
+<footer>
+    <ul class="footer">
+        <li><b>Contract</b></li>
+        <li><img src="email.png" width="25px"> mehedihasanmh4439@gmail.com</li>
+        <li><img src="email.png" width="25px"> mehedihasanmh820@gmail.com</li>
+        <li><img src="telegram.png" width="25px"> 01332762273</li>
+        <li><img src="whatsapp.png" width="25px"> 01332762273<hr></li>
+    </ul>
+    <ul class="foote"><b>Flow us</b>
+        <li><link href="https://www.linkedin.com/in/mehedi-hasan-8ba865445?utm_source=share_via&utm_content=profile&utm_medium=member_android"><img src="linkedin.png"></li>
+        <li><link href="https://youtube.com/@mehedihasan-u5x3z?si=oCxcmMVvn1Rs016A"><img src="youtube.png"></li>
+        <li><link href="https://www.facebook.com/mehedi4439"><img src="facebook(1).png"></li>
+        <li><link href=""><img src="twitter.png"></li>
+        <li><link href=""><img src="instagram(1).png"></li>
+    </ul>
+</footer>
+</html>
