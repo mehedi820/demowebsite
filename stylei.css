@@ -43,7 +43,7 @@ nav{
     background-image: url(cover.jpg); margin: 70px auto; background-size: cover; max-width: 800px; 
 }
 .logo{
-    position: ; margin: 10px 38%; padding-top: 5px;
+    padding-top: 5px; margin: 0px 40%;
 }
 .logo img{
      border-radius: 50%; background-color: black;
