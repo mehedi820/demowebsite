@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEHEDI_BD</title>
     <link rel="stylesheet" href="stylei.css">
-    <!-- <script src="script.js"></script> -->
     <link rel="icon" type="image/png" href="Logot.png">
 </head>
 <body>
@@ -21,83 +20,133 @@
         </div>
     </header>
     <div class="bod">
-        
+
         <div class="logo"><img src="mh.png" width="150px"></div>
         <div class="salam">Assalamu Aliqum Owa Rahmatullahi Owabarakatuh</div>
-    </div id="BODY">
-    <div>
-            <div class="body">
-                .   Name: Mehedi Hasan<br>
-                .   Email: mehedihasanmh4439@gmail.com<br>
-                .   Phone: 01332762273<br>
-            </div>
-            <script src="scrept.js"></script>
-    <div class="user">
-        <input id="email" type="email" placeholder="Email"><br>
-        <input id="password" type="password" placeholder="Password"><br>
-        <button onclick="auth('signup')">Sign up</button>
-        <button onclick="auth('login')">Login</button>
-        <p id="msg" style="color:red"></p>
+    </div>
+    <div id="BODY">
+        <div class="body">
+            .   Name: Mehedi Hasan<br>
+            .   Email: mehedihasanmh4439@gmail.com<br>
+            .   Phone: 01332762273<br>
+        </div>
+
+        <!-- Login / Signup box -->
+        <div class="user" id="authBox">
+            <input id="email" type="email" placeholder="Email"><br>
+            <input id="password" type="password" placeholder="Password (6+ character)"><br>
+            <button id="signupBtn">Sign up</button>
+            <button id="loginBtn">Login</button>
+            <p id="msg" style="color:red"></p>
+        </div>
+
+        <!-- Login korar por ei box dekhabe -->
+        <div id="appBox" style="display:none">
+            <p>Welcome, <b id="who"></b> <button id="logoutBtn">Logout</button></p>
+            <button id="likeBtn">👍 Like</button>
+            <span id="count">0</span> likes
+        </div>
     </div>
 
-<div id="appBox" style="display:none">
-  <p>Welcome, <b id="who"></b> <button onclick="logout()">Logout</button></p>
-  <button id="likeBtn" onclick="like()">👍 Like</button>
-  <span id="count">0</span> likes
-</div>
+    <footer>
+        <ul class="footer">
+            <li><b>Contract</b></li>
+            <li><img src="email.png" width="25px"> mehedihasanmh4439@gmail.com</li>
+            <li><img src="email.png" width="25px"> mehedihasanmh820@gmail.com</li>
+            <li><img src="telegram.png" width="25px"> 01332762273</li>
+            <li><img src="whatsapp.png" width="25px"> 01332762273<hr></li>
+        </ul>
+        <ul class="foote"><b>Flow us</b>
+            <li><a href="https://www.linkedin.com/in/mehedi-hasan-8ba865445?utm_source=share_via&utm_content=profile&utm_medium=member_android"><img src="linkedin.png"></a></li>
+            <li><a href="https://youtube.com/@mehedihasan-u5x3z?si=oCxcmMVvn1Rs016A"><img src="youtube.png"></a></li>
+            <li><a href="https://www.facebook.com/mehedi4439"><img src="facebook(1).png"></a></li>
+            <li><a href=""><img src="twitter.png"></a></li>
+            <li><a href=""><img src="instagram(1).png"></a></li>
+        </ul>
+    </footer>
 
-<script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  signOut, onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  getFirestore, doc, getDoc, setDoc, deleteDoc,
+  collection, getCountFromServer
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDlxUyaFehxhdiVB9EWIpDHS94ceaH7XG4",
+  authDomain: "like-count-eee61.firebaseapp.com",
+  projectId: "like-count-eee61",
+  storageBucket: "like-count-eee61.firebasestorage.app",
+  messagingSenderId: "843855615024",
+  appId: "1:843855615024:web:8a8701df05d23c7b1709f5"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 const $ = id => document.getElementById(id);
-const post = (url, body) => fetch(url, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(body || {})
-}).then(r => r.json());
 
-function show(d) {
-  $("authBox").style.display = "none";
-  $("appBox").style.display = "block";
-  $("who").textContent = d.email;
-  $("count").textContent = d.count;
-  $("likeBtn").textContent = d.liked ? "❤️ Liked" : "👍 Like";
+const errText = e => ({
+  "auth/email-already-in-use": "Ei email diye account already ache",
+  "auth/invalid-email": "Email thik nai",
+  "auth/weak-password": "Password komport 6 character dao",
+  "auth/invalid-credential": "Email ba password bhul",
+  "auth/missing-password": "Password din",
+  "auth/api-key-not-valid.-please-pass-a-valid-api-key.": "Firebase API key bhul"
+}[e.code] || (e.code + " : " + e.message));
+
+async function refreshLikes(user) {
+  try {
+    const snap = await getCountFromServer(collection(db, "likes"));
+    $("count").textContent = snap.data().count;
+    const mine = await getDoc(doc(db, "likes", user.uid));
+    $("likeBtn").textContent = mine.exists() ? "❤️ Liked" : "👍 Like";
+  } catch (e) { console.error(e); }
 }
 
-async function auth(type) {
-  const d = await post("/api/" + type,
-    { email: $("email").value, password: $("password").value });
-  if (d.error) return $("msg").textContent = d.error;
-  load();
-}
+onAuthStateChanged(auth, user => {
+  if (user) {
+    $("authBox").style.display = "none";
+    $("appBox").style.display = "block";
+    $("who").textContent = user.email;
+    refreshLikes(user);
+  } else {
+    $("authBox").style.display = "block";
+    $("appBox").style.display = "none";
+  }
+});
 
-async function like() {
-  const d = await post("/api/like");
-  $("count").textContent = d.count;
-  $("likeBtn").textContent = d.liked ? "❤️ Liked" : "👍 Like";
-}
+$("signupBtn").addEventListener("click", async () => {
+  try {
+    await createUserWithEmailAndPassword(auth, $("email").value, $("password").value);
+    $("msg").textContent = "";
+  } catch (e) { $("msg").textContent = errText(e); }
+});
 
-async function logout() { await post("/api/logout"); location.reload(); }
+$("loginBtn").addEventListener("click", async () => {
+  try {
+    await signInWithEmailAndPassword(auth, $("email").value, $("password").value);
+    $("msg").textContent = "";
+  } catch (e) { $("msg").textContent = errText(e); }
+});
 
-async function load() {
-  const r = await fetch("/api/me");
-  if (r.ok) show(await r.json());
-}
-load();
+$("logoutBtn").addEventListener("click", () => signOut(auth));
+
+$("likeBtn").addEventListener("click", async () => {
+  const user = auth.currentUser;
+  if (!user) return;
+  try {
+    const ref = doc(db, "likes", user.uid);
+    const mine = await getDoc(ref);
+    if (mine.exists()) await deleteDoc(ref);
+    else await setDoc(ref, { uid: user.uid, at: Date.now() });
+    refreshLikes(user);
+  } catch (e) { alert(errText(e)); }
+});
 </script>
 </body>
-<footer>
-    <ul class="footer">
-        <li><b>Contract</b></li>
-        <li><img src="email.png" width="25px"> mehedihasanmh4439@gmail.com</li>
-        <li><img src="email.png" width="25px"> mehedihasanmh820@gmail.com</li>
-        <li><img src="telegram.png" width="25px"> 01332762273</li>
-        <li><img src="whatsapp.png" width="25px"> 01332762273<hr></li>
-    </ul>
-    <ul class="foote"><b>Flow us</b>
-        <li><a href="https://www.linkedin.com/in/mehedi-hasan-8ba865445?utm_source=share_via&utm_content=profile&utm_medium=member_android"><img src="linkedin.png"></li>
-        <li><a href="https://youtube.com/@mehedihasan-u5x3z?si=oCxcmMVvn1Rs016A"><img src="youtube.png"></li>
-        <li><a href="https://www.facebook.com/mehedi4439"><img src="facebook(1).png"></li>
-        <li><a href=""><img src="twitter.png"></li>
-        <li><a href=""><img src="instagram(1).png"></li>
-    </ul>
-</footer>
 </html>
