@@ -31,7 +31,58 @@
                 .   Email: mehedihasanmh4439@gmail.com<br>
                 .   Phone: 01332762273<br>
             </div>
-            <div></div>
+            <script src="scrept.js"></script>
+    <div class="user">
+        <input id="email" type="email" placeholder="Email"><br>
+        <input id="password" type="password" placeholder="Password"><br>
+        <button onclick="auth('signup')">Sign up</button>
+        <button onclick="auth('login')">Login</button>
+        <p id="msg" style="color:red"></p>
+    </div>
+
+<div id="appBox" style="display:none">
+  <p>Welcome, <b id="who"></b> <button onclick="logout()">Logout</button></p>
+  <button id="likeBtn" onclick="like()">👍 Like</button>
+  <span id="count">0</span> likes
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const post = (url, body) => fetch(url, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(body || {})
+}).then(r => r.json());
+
+function show(d) {
+  $("authBox").style.display = "none";
+  $("appBox").style.display = "block";
+  $("who").textContent = d.email;
+  $("count").textContent = d.count;
+  $("likeBtn").textContent = d.liked ? "❤️ Liked" : "👍 Like";
+}
+
+async function auth(type) {
+  const d = await post("/api/" + type,
+    { email: $("email").value, password: $("password").value });
+  if (d.error) return $("msg").textContent = d.error;
+  load();
+}
+
+async function like() {
+  const d = await post("/api/like");
+  $("count").textContent = d.count;
+  $("likeBtn").textContent = d.liked ? "❤️ Liked" : "👍 Like";
+}
+
+async function logout() { await post("/api/logout"); location.reload(); }
+
+async function load() {
+  const r = await fetch("/api/me");
+  if (r.ok) show(await r.json());
+}
+load();
+</script>
 </body>
 <footer>
     <ul class="footer">
